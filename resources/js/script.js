@@ -13,23 +13,29 @@ function putNum() {
 function number2text(value) {
     let fraction = Math.round(frac(value) * 100);
     let f_text = "";
-    let lastDigit = value[value.length-1];
+    let grn = Array(" гривня", " гривні", " гривень");
 
     if(fraction > 0) {
-        f_text = `, ${fraction}`;
+        if (fraction < 2 || fraction[1] < 2) {
+            f_text = `, ${fraction} копійка`;
+        }
+        if (fraction < 5 || fraction[1] < 5) {
+            f_text = `, ${fraction} копійки`;
+        } else
+        f_text = `, ${fraction} копійок`;
     } 
     else if (fraction == 0) {
-        f_text = ", 00";
+        f_text = ", 00 копійок";
     }
 
-    if (lastDigit == 1) {
-        return convert_number(value) + " гривня" + f_text + " копійок";
+    if (value[value.length-1] == 1) {
+        return convert_number(value) + grn[0] + f_text;
     } 
-    else if ( lastDigit > 0 && lastDigit <= 4) {
-        return convert_number(value) + " гривні" + f_text + " копійок";
+    else if ( value[value.length-1] > 0 && value[value.length-1] <= 4) {
+        return convert_number(value) + grn[1] + f_text;
     }
     else {
-    return convert_number(value) + " гривень" + f_text + " копійок";
+    return convert_number(value) + grn[2] + f_text;
     }
 }
 
