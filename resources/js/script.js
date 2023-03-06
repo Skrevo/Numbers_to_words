@@ -140,7 +140,8 @@ function convert_number(number)
 document.getElementById("copy").onclick = function() {
     let text = document.getElementById("out").value;
     navigator.clipboard.writeText(text).then(() => {
-        document.getElementById("copy").value = 'Скопійовано!';
+        document.getElementById("copy").value = 'Готово!';
+        document.getElementById("copy").getAttribute("color = green");
     }).catch(err => {
         console.error('Error in copying text: ', err);
     });
